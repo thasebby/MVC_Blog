@@ -1,4 +1,4 @@
-import {User} from '../models/User.js'
+import { User } from '../models/User.js'
 import bcrypt from 'bcrypt'
 
 const keyword = process.env.SEED_PASS

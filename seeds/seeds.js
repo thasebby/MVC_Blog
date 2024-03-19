@@ -1,8 +1,8 @@
-import {seedUsers} from './user-seeds.js'
-import {seedPosts} from './mockPost.js'
-import {seedComments} from './mockComments.js'
+import { seedUsers } from './user-seeds.js'
+import { seedPosts } from './mockPost.js'
+import { seedComments } from './mockComments.js'
 
-import {sequelize} from '../config/connection.js'
+import { sequelize } from '../config/connection.js'
 
 const seedAll = async () => {
     await sequelize.sync({force: true})

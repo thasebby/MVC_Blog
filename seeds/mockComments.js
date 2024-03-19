@@ -1,4 +1,4 @@
-import {Comments} from '../models/Comments.js'
+import { Comments } from '../models/Comments.js'
 
 const commentData = [
     {
