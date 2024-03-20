@@ -1,0 +1,29 @@
+<section>
+    <div>
+        <h1>{{title}}</h1>
+        <h2>Created by: {{user.username}} Created on: {{settingDate}}</h2>
+        <p>{{content}}</p>
+    </div>
+
+    <div>
+        {{#if logged_in}}
+            <form class="form postComment">
+                <div class="form-group">
+                    <input class="form-input" type="text" id="commentSection" placeholder="Add a comment">
+                </div>
+
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+        {{/if}}
+    </div>
+
+    <div>
+        <h2>Comments</h2>
+        {{#each comment}}
+            <div class="comments">
+                <p>{{comment}}</p>
+                <p>Created by:{{user.username}} Created on: {{settingDate}}</p>
+            </div>
+        {{/each}}
+    </div>
+</section>
