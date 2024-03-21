@@ -1,0 +1,27 @@
+<section>
+    <h1>Edit Post</h1>
+
+    <form class="form editPost">
+
+        {{!-- updated title --}}
+        <div>
+            <input class="form-input" type="text" id="updatePost" placeholder="Enter updated post title ..." value="{{title}}">
+        </div>
+
+        {{!-- updated post --}}
+        <div>
+            <input class="form-input" type="text" id="updateText" placeholder="Enter updated post content ..." value="{{content}}">
+        </div>
+
+        {{!-- submit edit --}}
+        <div>
+            <button id="edit-btn" class="btn btn-primary" type="submit">Update Post</button>
+        </div>
+
+        {{!-- delete post --}}
+        <div>
+            <button id="delete-btn" class="btn btn-primary" type="button">Delete Post</button>
+        </div>
+
+    </form>
+</section>
