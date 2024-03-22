@@ -1,4 +1,4 @@
-import { Comment } from './Comments.js'
+import { Comments } from './Comments.js'
 import { Post } from './Post.js'
 import { User } from './User.js'
 
@@ -7,7 +7,7 @@ User.hasMany(Post, {
     foreignKey: 'user_id',
 });
 
-User.hasMany(Comment, {
+User.hasMany(Comments, {
     foreignKey: 'user_id',
 });
 
@@ -16,17 +16,17 @@ Post.belongsTo(User, {
     foreignKey: 'user_id',
 });
 
-Post.hasMany(Comment, {
+Post.hasMany(Comments, {
     foreignKey: 'post_id',
 });
 
 // Comment relationships
-Comment.belongsTo(User, {
+Comments.belongsTo(User, {
     foreignKey: 'user_id',
 });
 
-Comment.belongsTo(Post, {
+Comments.belongsTo(Post, {
     foreignKey: 'post_id',
 });
 
-export { Comment, Post, User }
+export { Comments, Post, User }

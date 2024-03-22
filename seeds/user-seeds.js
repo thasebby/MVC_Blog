@@ -8,17 +8,17 @@ const userData = [
     {
         username:"SparkleNinja92",
         email:"sparkleninja@mail.com",
-        password:"hash",
+        password:hash,
     },
     {
         username:"CrimsonPineapple",
         email:"crimsonpineapple@mail.com",
-        password:"hash",
+        password:hash,
     },
     {
         username:"LunarEcho33",
         email:"lunarecho@mail.com",
-        password:"hash",
+        password:hash,
     }
 ]
 

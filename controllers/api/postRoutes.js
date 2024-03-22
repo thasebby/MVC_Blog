@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { User, Comment, Post } from '../../models/index.js'
+import { User, Comments, Post } from '../../models/index.js'
 import { withAuth } from '../../utils/auth.js'
 
 export const postRoutes = Router()
@@ -32,7 +32,7 @@ postRoutes.get(':id', async (req, res) => {
                     attributes: ['username']
                 },
                 {
-                    Comment,
+                    Comments,
                     include: [
                         {
                             User,
@@ -94,7 +94,7 @@ postRoutes.put('/:id', async (req,res) => {
 postRoutes.delete('/:id', async (req,res) => {
     try{
         const deletePost = await Promise.all([
-            Comment.destroy(
+            Comments.destroy(
                 {where: {post_id: req.params.id}}
             ),
             Post.destroy({

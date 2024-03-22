@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { withAuth} from '../utils/auth.js'
-import { User, Post, Comment } from '../models/index.js'
+import { User, Post, Comments } from '../models/index.js'
 
 export const homeRoutes= Router()
 
@@ -55,7 +55,7 @@ homeRoutes.get('/post/:id', withAuth, async(req,res) => {
                 {User,
                 attributes: ['username']},
                 {
-                    Comment,
+                    Comments,
                     include: [
                         {User,
                         attributes: ['username']}

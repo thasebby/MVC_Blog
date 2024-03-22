@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { Comment } from '../../models/Comments.js'
+import { Comments } from '../../models/Comments.js'
 import { withAuth } from '../../utils/auth.js'
 
 export const commentRoutes = Router()
@@ -12,7 +12,7 @@ commentRoutes.post('/', withAuth, async(req,res) => {
             user_id: req.session.user_id,
         }
 
-        await Comment.create(newComment);
+        await Comments.create(newComment);
 
         res.status(200).json(newComment)
     }
