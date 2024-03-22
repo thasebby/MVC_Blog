@@ -6,17 +6,17 @@ import { User } from '../models/User.js'
 
 const userData = [
     {
-        username:"SparkleNinja92",
+        username:"JuanEste",
         email:"sparkleninja@mail.com",
         password:"password123",
     },
     {
-        username:"CrimsonPineapple",
+        username:"SammyLu",
         email:"crimsonpineapple@mail.com",
         password:"password123",
     },
     {
-        username:"LunarEcho33",
+        username:"RonJon",
         email:"lunarecho@mail.com",
         password:"password123",
     }
