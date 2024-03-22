@@ -1,6 +1,6 @@
 import  { DataTypes, Model } from 'sequelize';
 import bcrypt from 'bcrypt';
-import { Sequelize } from '../config/connection.js';
+import { sequelize } from '../config/connection.js';
 
 export class User extends Model {
     // checks to see if the password matches the hashed password
@@ -49,7 +49,7 @@ User.init(
                 return updatedUser;
             },
         },
-        Sequelize,
+        sequelize,
         timestamps: false,
         freezeTableName: true,
         underscored:true,
