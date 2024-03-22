@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
-import { Sequelize } from '../config/connection.js';
+import { sequelize } from '../config/connection.js';
 
 export class Comments extends Model {}
 
@@ -36,7 +36,7 @@ Comments.init(
         },
     },
     {
-        Sequelize,
+        sequelize,
         timestamps: true,
         freezeTableName: true,
         underscored: true,
