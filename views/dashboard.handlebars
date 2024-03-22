@@ -1,0 +1,18 @@
+<section>
+    {{!-- blog posts that have already been created --}}
+     <div>
+        <h1>Your Blog Posts</h1>
+        {{#each post}}
+          <div class="post">
+            <h2><a href="/post/{{id}}" class="titlePost">{{title}}</a></h2>
+            <p>Created by: {{user.username}} Date created:{{settingDate}}</p>
+            <button class="btn btn-primary" href="/editPost/{{id}}">Edit Post</button>
+          </div>
+        {{/each}}
+     </div>
+
+    {{!-- create a new blog post --}}
+        <div>
+        <button class="btn btn-primary" href="/newPost">Create a new blog post!</button>
+     </div>
+</section>
