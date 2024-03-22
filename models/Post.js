@@ -1,5 +1,5 @@
 import { DataTypes, Model } from "sequelize";
-import { sequelize } from "../config/connection.js";
+import { Sequelize } from "../config/connection.js";
 
 export class Post extends Model {}
 
@@ -33,7 +33,7 @@ Post.init(
         },
     },
     {
-        sequelize,
+        Sequelize,
         // this is set to true to track the creation and modification times of records
         timestamps: true,
         // the table name will match the model name, otherwise the ORM will pluralize the model name for the table 

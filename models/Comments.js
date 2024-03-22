@@ -1,9 +1,9 @@
 import { DataTypes, Model } from 'sequelize';
-import { sequelize } from '../config/connection.js';
+import { Sequelize } from '../config/connection.js';
 
-export class Comment extends Model {}
+export class Comments extends Model {}
 
-Comment.init(
+Comments.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -36,7 +36,7 @@ Comment.init(
         },
     },
     {
-        sequelize,
+        Sequelize,
         timestamps: true,
         freezeTableName: true,
         underscored: true,

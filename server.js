@@ -7,7 +7,6 @@ import path from 'path'
 import { routes } from './controllers/index.js'
 import { sequelize } from './config/connection.js'
 import { helpers } from './utils/helpers.js'
-import './scheduledTasks/index.js'; // Imported scheduledTasks for executing tasks at scheduled times
 
 import { fileURLToPath } from 'url';
 

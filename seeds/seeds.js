@@ -2,10 +2,10 @@ import { seedUsers } from './user-seeds.js'
 import { seedPosts } from './mockPost.js'
 import { seedComments } from './mockComments.js'
 
-import { sequelize } from '../config/connection.js'
+import { Sequelize } from '../config/connection.js'
 
 const seedAll = async () => {
-    await sequelize.sync({force: true})
+    await Sequelize.sync({force: true})
     console.log('\n----- DATABASE SYNCED -----\n');
 
     await seedUsers()
@@ -18,6 +18,6 @@ const seedAll = async () => {
     console.log('\n----- COMMENTS SEEDED -----\n');
 
     process.exit(0)
-}
+};
 
 seedAll()

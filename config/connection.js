@@ -1,12 +1,12 @@
 import { Sequelize } from 'sequelize'
 import 'dotenv/config'
 
-let sequelize
+let newSequelize
 
 if (process.env.JAWSDB_URL) {
-  sequelize = new Sequelize(process.env.JAWSDB_URL)
+  newSequelize = new Sequelize(process.env.JAWSDB_URL)
 } else {
-  sequelize = new Sequelize(
+  newSequelize = new Sequelize(
   process.env.DB_NAME,
   process.env.DB_USER,
   process.env.DB_PASSWORD,
@@ -18,4 +18,4 @@ if (process.env.JAWSDB_URL) {
 )
 }
 
-export { sequelize }
+export { Sequelize }
