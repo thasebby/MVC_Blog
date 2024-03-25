@@ -7,6 +7,7 @@
             <h2><a href="/post/{{id}}" class="titlePost">{{title}}</a></h2>
             <p>Created by: {{user.username}} Date created:{{settingDate}}</p>
             <button class="btn btn-primary" href="/editPost/{{id}}">Edit Post</button>
+            <button class="btn btn-primary delete" data-post-id="{{id}}">Delete</button>
           </div>
         {{/each}}
      </div>
