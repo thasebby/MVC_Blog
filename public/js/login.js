@@ -22,7 +22,7 @@ const loginFormHandler = async (event) => {
             document.location.replace('/')
         }
         else{
-            alert(response.statusText)
+            console.log(response.statusText)
         }
     }
 };
