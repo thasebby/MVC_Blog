@@ -102,16 +102,16 @@ homeRoutes.get('/dashboard', withAuth, async (req,res) => {
 });
 
 //adding a new blog post
-homeRoutes.get('/newBlog', (req,res) => {
+homeRoutes.get('/newPost', (req,res) => {
     if(req.session.logged_in) {
-        res.render('newBlog');
+        res.render('newPost');
         return;
     }
     res.redirect('/login');
 });
 
 // update post
-homeRoutes.get('/editBlog/:id', async (req,res) => {
+homeRoutes.get('/editPost/:id', async (req,res) => {
     try {
         const edit = await Post.findByPk(req.params.id, {
             include: [
@@ -131,7 +131,7 @@ homeRoutes.get('/editBlog/:id', async (req,res) => {
 
         const blog = edit.get({plain:true});
 
-        res.render('editBlog', {
+        res.render('editPost', {
             ...blog,
             logged_in: req.session.logged_in,
         });
@@ -142,15 +142,15 @@ homeRoutes.get('/editBlog/:id', async (req,res) => {
 });
 
 // delete post
-homeRoutes.delete('/deletePost/:id', withAuth, async(req,res) => {
-    try{
-        const deletePost = await Post.findByPk(req.params.id);
+// homeRoutes.delete('/deletePost/:id', withAuth, async(req,res) => {
+//     try{
+//         const deletePost = await Post.findByPk(req.params.id);
 
-        await deletePost.destroy();
+//         await deletePost.destroy();
 
-        res.redirect('/dashboard');
-    }
-    catch(err){
-        res.status(500).json(err);
-    }
-});
+//         res.redirect('/dashboard');
+//     }
+//     catch(err){
+//         res.status(500).json(err);
+//     }
+// });
