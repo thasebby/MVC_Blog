@@ -10,14 +10,13 @@ homeRoutes.get ('/', async (req,res) => {
    try{
     const existingPosts = await Post.findAll({
         include: [
-           { User,
+           { model: User,
             attributes: ['username'],
            }
         ],
     });
     // converting to plain JavaScript
     const posts = existingPosts.map((post) => post.get({plain:true}));
-
     //rendering the homepage.handlebars
     res.render("homepage", {
         posts,
@@ -45,7 +44,7 @@ homeRoutes.get('/login', (req,res) => {
         return;
     }
     res.render('login');
-})
+});
 
 // showing existing post 
 homeRoutes.get('/post/:id', withAuth, async(req,res) => {
