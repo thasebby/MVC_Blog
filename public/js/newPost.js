@@ -5,6 +5,8 @@ const newPostSubmit = $('form#postSubmit')
 
 // reaching the title and text section for post
 const newPostHandler = async (event) => {
+    event.preventDefault();
+
     const title = $('#blogTitle').val().trim();
     const text = $('#blogText').val().trim();
 
