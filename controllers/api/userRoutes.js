@@ -1,6 +1,6 @@
-import { Router } from 'express'
-import { User } from '../../models/User.js'
-import { withAuth } from '../../utils/auth.js'
+import { Router } from 'express';
+import { User } from '../../models/User.js';
+import { withAuth } from '../../utils/auth.js';
 
 export const userRoutes = Router()
 
@@ -23,13 +23,15 @@ userRoutes.post('/signup', async (req, res) => {
         const signupUser = await User.create(req.body);
 
         req.session.save(() => {
-            req.session.user_id = signupUser;
+            req.session.user_id = signupUser.id;
             req.session.logged_in = true;
 
             res.status(200).json(signupUser)
         })
+        console.log("USER LOG---",res.session)
     }
     catch (err) {
+        console.log("signup error",err)
         res.status(500).json(err)
     }
 });
@@ -41,7 +43,7 @@ userRoutes.post('/login', async (req, res) => {
             where: { username: req.body.username }
         });
 
-        if (!userData) {
+        if (!loginUser) {
             res.status(400)
                 .json({ message: 'Incorrect email or password' })
             return
@@ -56,16 +58,20 @@ userRoutes.post('/login', async (req, res) => {
         }
 
         req.session.save(() => {
-            req.session.user_id = loginUser.userData.id;
+            req.session.user_id = loginUser.id;
             req.session.logged_in = true;
+            console.log("USER LOG---",res.session)
 
             res.json({
                 user: loginUser,
                 message: 'Logged In'
             });
         });
+
     }
     catch(err) {
+        console.log("Login error",err)
+
         res.status(400).json(err);
     }
 });
