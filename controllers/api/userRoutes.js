@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { User } from '../../models';
+import { User } from '../../models/User.js';
 import { withAuth } from '../../utils/auth.js';
 
 export const userRoutes = Router();

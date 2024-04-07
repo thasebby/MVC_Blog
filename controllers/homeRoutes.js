@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { withAuth} from '../utils/auth.js'
-import { User, Post, Comment } from '../models'
+import { User, Post, Comment } from '../models/index.js'
 
 export const homeRoutes= Router();
 
