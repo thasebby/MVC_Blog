@@ -19,7 +19,7 @@ const loginFormHandler = async (event) => {
         });
     
         if (response.ok) {
-            document.location.replace('/')
+            document.location.replace('/');
         }
         else{
             console.log(response.statusText)
@@ -28,4 +28,4 @@ const loginFormHandler = async (event) => {
 };
 
 // event listener
-logInForm.submit(loginFormHandler)
+logInForm.on('click', loginFormHandler)

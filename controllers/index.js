@@ -1,7 +1,7 @@
 // only importing the necessary routes
 import { Router } from 'express'
-import { homeRoutes } from './homeRoutes.js'
-import { apiIndex } from './api/index.js'
+import { homeRoutes }  from './homeRoutes'
+import { apiIndex } from './api'
 
 export const routes = Router();
 

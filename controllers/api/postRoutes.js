@@ -1,6 +1,6 @@
-import { Router } from 'express'
-import { User, Comments, Post } from '../../models/index.js'
-import { withAuth } from '../../utils/auth.js'
+import { Router } from 'express';
+import { User, Comment, Post } from '../../models';
+import { withAuth } from '../../utils/auth';
 
 export const postRoutes = Router()
 
@@ -10,7 +10,7 @@ postRoutes.get('/', async (req, res) => {
         const allPosts = await Post.findAll({
             include: [
                 {
-                    User,
+                    model: User,
                     attributes: ['username']
                 }
             ],
@@ -23,19 +23,19 @@ postRoutes.get('/', async (req, res) => {
 });
 
 // getting a single post
-postRoutes.get(':id', async (req, res) => {
+postRoutes.get('/:id', async (req, res) => {
     try {
         const singlePost = await Post.findByPk(req.params.id, {
             include: [
                 {
-                    User,
+                    model: User,
                     attributes: ['username']
                 },
                 {
-                    Comments,
+                    model: Comment,
                     include: [
                         {
-                            User,
+                            model: User,
                             attributes: ['username']
                         }
                     ],
@@ -56,12 +56,10 @@ postRoutes.get(':id', async (req, res) => {
 // create a new post
 postRoutes.post('/', withAuth, async (req,res) => {
     try{
-        const newPost = {
+        const newPost = await Post.create({
             ...req.body,
             user_id: req.session.user_id,
-        }
-
-        await Post.create(newPost)
+        });
 
         res.status(200).json(newPost)
     }
@@ -71,7 +69,7 @@ postRoutes.post('/', withAuth, async (req,res) => {
 });
 
 // update a post
-postRoutes.put('/:id', async (req,res) => {
+postRoutes.put('/:id', withAuth, async (req,res) => {
     try{
         const updatedPost = await Post.update(req.body, {
             where: {
@@ -91,10 +89,10 @@ postRoutes.put('/:id', async (req,res) => {
 });
 
 // delete post
-postRoutes.delete('/:id', async (req,res) => {
+postRoutes.delete('/:id', withAuth, async (req,res) => {
     try{
         const deletePost = await Promise.all([
-            Comments.destroy(
+            Comment.destroy(
                 {where: {post_id: req.params.id}}
             ),
             Post.destroy({

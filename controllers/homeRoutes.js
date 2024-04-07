@@ -1,8 +1,8 @@
 import { Router } from 'express'
 import { withAuth} from '../utils/auth.js'
-import { User, Post, Comments } from '../models/index.js'
+import { User, Post, Comment } from '../models'
 
-export const homeRoutes= Router()
+export const homeRoutes= Router();
 
 //route for homepage
 homeRoutes.get ('/', async (req,res) => {
@@ -51,12 +51,12 @@ homeRoutes.get('/post/:id', withAuth, async(req,res) => {
     try{
         const existingPost = await Post.findByPk(req.params.id, {
             include: [
-                {User,
+                { model: User,
                 attributes: ['username']},
                 {
-                    Comments,
+                    model: Comment,
                     include: [
-                        {User,
+                        {model: User,
                         attributes: ['username']}
                     ],
                 },
@@ -83,7 +83,7 @@ homeRoutes.get('/dashboard', withAuth, async (req,res) => {
         const postDash = await Post.findAll({
             where: {user_id: req.session.user_id},
             include: [
-                {User,
+                { model: User,
                 attributes:['username']
                 }
             ],
@@ -115,13 +115,13 @@ homeRoutes.get('/editPost/:id', async (req,res) => {
     try {
         const edit = await Post.findByPk(req.params.id, {
             include: [
-                {User,
+                {model: User,
                 attributes: ['username']
                 },
                 {
-                    Comment,
+                    model: Comment,
                     include: [
-                        {User,
+                        {model: User,
                         attributes: ['username']
                         }
                     ],

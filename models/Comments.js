@@ -1,9 +1,9 @@
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../config/connection.js';
 
-export class Comments extends Model {}
+export class Comment extends Model {}
 
-Comments.init(
+Comment.init(
     {
         id: {
             type: DataTypes.INTEGER,

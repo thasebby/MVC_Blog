@@ -1,11 +1,11 @@
 import { Router } from 'express';
-import { User } from '../../models/User.js';
+import { User } from '../../models';
 import { withAuth } from '../../utils/auth.js';
 
-export const userRoutes = Router()
+export const userRoutes = Router();
 
 // all routes
-userRoutes.get('/', withAuth, async (req, res) => {
+userRoutes.get('/', async (req, res) => {
     try {
         const users = await User.findAll({
             attributes: { exclude: ['password'] },
@@ -20,19 +20,21 @@ userRoutes.get('/', withAuth, async (req, res) => {
 // sign up route
 userRoutes.post('/signup', async (req, res) => {
     try {
-        const signupUser = await User.create(req.body);
+        const signupUser = await User.create({
+            username: req.body.username,
+            email: req.body.email,
+            password: req.body.password
+        });
 
-        req.session.save(() => {
-            req.session.user_id = signupUser.id;
-            req.session.logged_in = true;
-
-            res.status(200).json(signupUser)
-        })
-        console.log("USER LOG---",res.session)
+        req.session.user_id = signupUser.id;
+        req.session.logged_in = true;
+        req.session.save();
+        
+        res.status(200).json(singupUser);
     }
     catch (err) {
-        console.log("signup error",err)
-        res.status(500).json(err)
+        console.log("signup error",err);
+        res.status(500).json(err);
     }
 });
 
@@ -44,23 +46,21 @@ userRoutes.post('/login', async (req, res) => {
         });
 
         if (!loginUser) {
-            res.status(400)
-                .json({ message: 'Incorrect email or password' })
-            return
+            res.status(400).json({ message: 'Incorrect email or password' });
+            return;
         }
         // checking if the stored hashed password matches
         const validPassword = await loginUser.checkPassword(req.body.password);
 
         if(!validPassword) {
-            res.status(400)
-            .json({message: 'Incorrect email or password'})
+            res.status(400).json({message: 'Incorrect email or password'});
             return;
         }
 
         req.session.save(() => {
             req.session.user_id = loginUser.id;
             req.session.logged_in = true;
-            console.log("USER LOG---",res.session)
+            console.log("USER LOG---",res.session);
 
             res.json({
                 user: loginUser,
@@ -70,7 +70,7 @@ userRoutes.post('/login', async (req, res) => {
 
     }
     catch(err) {
-        console.log("Login error",err)
+        console.log("Login error",err);
 
         res.status(400).json(err);
     }
@@ -81,9 +81,9 @@ userRoutes.post('/logout', (req,res) => {
     if(req.session.logged_in) {
         req.session.destroy(() => {
             res.status(204).end()
-        })
+        });
     }
     else{
-        res.status(404).end()
+        res.status(404).end();
     }
 });
