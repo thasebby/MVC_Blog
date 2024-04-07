@@ -4,7 +4,7 @@ import session from 'express-session'
 import SequelizeStoreConstructor from 'connect-session-sequelize'
 import exphbs from 'express-handlebars'
 import path from 'path'
-import { routes } from './controllers/index.js'
+import { homeRoutes } from './controllers/index.js'
 import { sequelize } from './config/connection.js'
 import { helpers } from './utils/helpers.js'
 
@@ -46,11 +46,11 @@ app.engine('handlebars', hbs.engine); // Set handlebars as the view engine
 app.set('view engine', 'handlebars');
 
 app.use(express.json()); // Middleware to parse JSON bodies
-app.use(express.urlencoded({ extended: false })); // Middleware to parse URL-encoded bodies
+app.use(express.urlencoded({ extended: true })); // Middleware to parse URL-encoded bodies
 app.use('/public', express.static(process.cwd() + '/public')); // Serve static files from 'public' directory
 app.use(express.static(path.join(__dirname, 'public'))); // Serve static files, ensuring the path compatibility
 
-app.use(routes); // Use the routes defined in controllers
+app.use(homeRoutes); // Use the routes defined in controllers
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`Now listening on localhost:${PORT}`)); // Start the server and listen on the specified port

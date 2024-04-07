@@ -1,7 +1,7 @@
 import $ from './utils/jQuery.js'
 
 // reaching to the post submit button
-const newPostSubmit = $('form#postSubmit')
+const newPostSubmit = $('#postSubmit')
 
 // reaching the title and text section for post
 const newPostHandler = async (event) => {
@@ -27,5 +27,5 @@ const newPostHandler = async (event) => {
 };
 
 // event listener
-newPostSubmit.submit(newPostHandler);
+newPostSubmit.on('click', newPostHandler);
 

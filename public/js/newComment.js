@@ -1,6 +1,6 @@
 import $ from "./utils/jQuery.js"
 
-let newCommentSubmit = $('form#submitComment')
+let newCommentSubmit = $('#submitComment')
 
 const newCommentHandler = async (event) => {
     event.preventDefault();
@@ -32,4 +32,4 @@ const newCommentHandler = async (event) => {
 };
 
 // adding event listener to submit the text
-newCommentSubmit.submit(newCommentHandler)
+newCommentSubmit.on('click', newCommentHandler)

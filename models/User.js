@@ -20,27 +20,32 @@ User.init(
         },
         username: {
             type: DataTypes.STRING(15),
-            allowNull:false,
+            allowNull: false,
+            unique: true,
         },
         email: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true,
+            validate: {
+                isEmail: true,
+            },
         },
         password: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 // minimum length of 8 characters
-                len: [8]
+                len: [8],
             },
         },
     },
     {
         // these hooks ensure that passwords are hashed before being stored in the database
         hooks:{
-            beforeCreate: async (newUser) => {
-                newUser.password = await bcrypt.hash(newUser.password, 10);
-                return newUser;
+            beforeCreate: async (signupUser) => {
+                signupUser.password = await bcrypt.hash(signupUser.password, 10);
+                return signupUser;
             },
             beforeUpdate: async (updatedUser) => {
                 if (updatedUser.changed('password')){

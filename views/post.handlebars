@@ -7,26 +7,23 @@
     </div>
 
     {{!-- if user is logged in, they will be able to write a comment --}}
-    <div>
-        {{#if logged_in}}
-            <form class="form postComment">
-                <div class="form-group">
-                    <input class="form-input" type="text" id="commentSection" placeholder="Add a comment">
-                </div>
-
-                <button class="btn btn-primary" type="submit" id="submitComment">Submit</button>
-            </form>
-        {{/if}}
-    </div>
+    {{#if logged_in}}
+    <form class="form postComment">
+        <div class="form-group">
+            <textarea class="form-control" type="text" id="commentSection" placeholder="Add a comment"></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit" id="submitComment">Submit</button>
+    </form>
+    {{/if}}
 
     {{!-- displaying all comments --}}
-    <div>
-        <h2>Comments</h2>
-        {{#each comment}}
-            <div class="comments">
-                <p>{{comment}}</p>
-                <p>Created by:{{user.username}} Created on: {{settingDate}}</p>
-            </div>
-        {{/each}}
+
+    <h2>Comments</h2>
+    {{#each comment}}
+    <div class="comments">
+        <p>{{comment}}</p>
+        <p>Created by:{{user.username}} Created on: {{settingDate}}</p>
     </div>
+    {{/each}}
+
 </section>
