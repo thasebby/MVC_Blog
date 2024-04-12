@@ -21,11 +21,11 @@ Post.hasMany(Comment, {
 });
 
 // Comment relationships
-Comments.belongsTo(User, {
+Comment.belongsTo(User, {
     foreignKey: 'user_id',
 });
 
-Comments.belongsTo(Post, {
+Comment.belongsTo(Post, {
     foreignKey: 'post_id',
 });
 
